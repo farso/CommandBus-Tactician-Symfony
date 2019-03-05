@@ -26,9 +26,15 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # define tactician command handlers
     create_user_handler:
         class: App\Users\Application\CreateUserHandler
+        arguments:
+            - '@App\Users\Domain\Model\UserRepository'
         tags:
-            - { name: tactician.handler, command: App\Users\Application\Commands\CreateUserCommand  }
+            - { name: tactician.handler, typehints: true }
+    # define middleware
+    foo_middleware_plugin:
+        class: App\Users\Application\MiddleWare\FooMiddleWare
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones

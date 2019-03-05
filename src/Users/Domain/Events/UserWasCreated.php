@@ -63,6 +63,14 @@ class UserWasCreated implements EventDomainInterface
         return $this->name;
     }
 
+    /**
+     * @return int
+     */
+    public function getOccurredOn(): int
+    {
+        return $this->occurredOn;
+    }
+
 
 
 }
